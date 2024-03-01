@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:width="160dp"
+        android:height="160dp">
+        <shape android:shape="rectangle">
+            <solid android:color="@android:color/transparent" />
+        </shape>
+    </item>
+    <item
+        android:width="80dp"
+        android:height="80dp"
+        android:gravity="top|center_horizontal"
+        android:top="16dp">
+        <vector
+            android:width="24dp"
+            android:height="24dp"
+            android:viewportWidth="960"
+            android:viewportHeight="960">
+            <path
+                android:fillColor="?colorSecondary"
+                android:pathData="M280,560Q247,560 223.5,536.5Q200,513 200,480Q200,447 223.5,423.5Q247,400 280,400Q313,400 336.5,423.5Q360,447 360,480Q360,513 336.5,536.5Q313,560 280,560ZM280,720Q180,720 110,650Q40,580 40,480Q40,380 110,310Q180,240 280,240Q347,240 401.5,273Q456,306 488,360L840,360L960,480L780,660L700,600L620,660L535,600L488,600Q456,654 401.5,687Q347,720 280,720ZM280,640Q336,640 378.5,606Q421,572 435,520L560,520L618,561L700,500L771,555L846,480L806,440L435,440Q421,388 378.5,354Q336,320 280,320Q214,320 167,367Q120,414 120,480Q120,546 167,593Q214,640 280,640Z" />
+        </vector>
+    </item>
+    <item
+        android:width="80dp"
+        android:height="80dp"
+        android:bottom="16dp"
+        android:gravity="bottom|center_horizontal">
+        <vector
+            android:width="24dp"
+            android:height="24dp"
+            android:tint="?attr/colorControlNormal"
+            android:viewportWidth="960"
+            android:viewportHeight="960">
+            <path
+                android:fillColor="?colorSecondary"
+                android:pathData="M80,760L80,680L880,680L880,760L80,760ZM126,518L74,488L108,428L40,428L40,368L108,368L74,310L126,280L160,338L194,280L246,310L212,368L280,368L280,428L212,428L246,488L194,518L160,458L126,518ZM446,518L394,488L428,428L360,428L360,368L428,368L394,310L446,280L480,338L514,280L566,310L532,368L600,368L600,428L532,428L566,488L514,518L480,458L446,518ZM766,518L714,488L748,428L680,428L680,368L748,368L714,310L766,280L800,338L834,280L886,310L852,368L920,368L920,428L852,428L886,488L834,518L800,458L766,518Z" />
+        </vector>
+    </item>
+</layer-list>

@@ -14,6 +14,7 @@ import android.widget.PopupWindow
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.core.view.children
 import androidx.core.view.isInvisible
 import androidx.databinding.BindingAdapter
@@ -23,7 +24,6 @@ import androidx.databinding.ObservableField
 import org.ymkm.passwordchart.R
 import org.ymkm.passwordchart.databinding.ActivityTopBinding
 import java.util.Locale
-import kotlin.math.max
 
 class TopAct : AppCompatActivity(), ViewCallback {
     private lateinit var binding: ActivityTopBinding
@@ -51,6 +51,7 @@ class TopAct : AppCompatActivity(), ViewCallback {
     override val generatedPassword: ObservableField<String?> = ObservableField()
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        installSplashScreen().setKeepOnScreenCondition { false }
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_top)
         binding.callback = this
@@ -105,7 +106,7 @@ class TopAct : AppCompatActivity(), ViewCallback {
                 pw,
                 includeNumbers,
                 includeSymbols
-        )
+            )
         updateGeneratedPassword()
     }
 

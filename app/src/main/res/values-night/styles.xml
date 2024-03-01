@@ -1,28 +1,28 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
     <style name="SplashTheme" parent="Theme.SplashScreen">
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryContainer">@color/colorPrimary</item>
+        <item name="colorPrimary">@color/colorPrimaryDark</item>
+        <item name="colorPrimaryContainer">@color/colorPrimaryDark</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorOnPrimary">?android:textColorPrimary</item>
-        <item name="colorSecondary">@color/colorSecondaryDark</item>
-        <item name="colorSecondaryContainer">@color/colorSecondaryDark</item>
+        <item name="colorSecondary">@color/colorSecondary</item>
+        <item name="colorSecondaryContainer">@color/colorSecondary</item>
         <item name="android:windowSplashScreenAnimatedIcon" tools:targetApi="s">
             @drawable/logo
         </item>
         <item name="android:windowSplashScreenBackground" tools:targetApi="s">
-            @color/colorPrimary
+            @color/colorPrimaryDark
         </item>
         <item name="postSplashScreenTheme">@style/AppTheme</item>
     </style>
 
     <style name="AppTheme" parent="Theme.Material3.DayNight">
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryContainer">@color/colorPrimary</item>
+        <item name="colorPrimary">@color/colorPrimaryDark</item>
+        <item name="colorPrimaryContainer">@color/colorPrimaryDark</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorOnPrimary">?android:textColorPrimary</item>
-        <item name="colorSecondary">@color/colorSecondaryDark</item>
-        <item name="colorSecondaryContainer">@color/colorSecondaryDark</item>
+        <item name="colorSecondary">@color/colorSecondary</item>
+        <item name="colorSecondaryContainer">@color/colorSecondary</item>
     </style>
 
     <style name="Button.CharTable" parent="Widget.Material3.Button.TextButton">
