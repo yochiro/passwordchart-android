@@ -1,8 +1,9 @@
 package org.ymkm.pwchart;
 
-import android.support.annotation.NonNull;
-import android.support.v4.util.ArrayMap;
 import android.util.SparseIntArray;
+
+import androidx.annotation.NonNull;
+import androidx.collection.ArrayMap;
 
 import java.util.Map;
 

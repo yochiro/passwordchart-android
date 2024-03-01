@@ -1,20 +1,23 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="Theme.Material3.DayNight">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryContainer">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorOnPrimary">?android:textColorPrimary</item>
+        <item name="colorSecondary">@color/colorSecondary</item>
+        <item name="colorSecondaryContainer">@color/colorSecondary</item>
     </style>
 
-    <style name="Button.CharTable" parent="Widget.AppCompat.Button.Borderless.Colored">
+    <style name="Button.CharTable" parent="Widget.Material3.Button.TextButton">
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="layout_columnWeight">1</item>
+        <item name="android:layout_columnWeight">1</item>
         <item name="android:minWidth">36dp</item>
         <item name="android:minHeight">36dp</item>
         <item name="android:textColor">@color/char_map_textcolor</item>
-        <item name="android:background">@drawable/char_map_bg</item>
+        <item name="android:background">@color/char_map_bg</item>
     </style>
 </resources>

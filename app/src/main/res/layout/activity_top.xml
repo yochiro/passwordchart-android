@@ -1,261 +1,330 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="org.ymkm.pwchart.TopAct">
+<layout>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/tv_seed_label" />
+    <data>
 
-    <EditText
-        android:id="@+id/tv_seed"
+        <import type="android.view.View" />
+
+        <variable
+            name="callback"
+            type="org.ymkm.pwchart.ViewCallback" />
+    </data>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/tv_hint_seed"
-        android:imeOptions="flagForceAscii"
-        android:lines="1"
-        android:maxLines="1" />
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingStart="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        android:paddingEnd="@dimen/activity_horizontal_margin"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        tools:context="org.ymkm.pwchart.TopAct">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/activity_vertical_margin"
-        android:text="@string/tv_pw_label" />
-
-    <EditText
-        android:id="@+id/tv_pw"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/tv_hint_password"
-        android:imeOptions="flagForceAscii"
-        android:lines="1"
-        android:maxLines="1" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/activity_vertical_margin"
-        android:orientation="horizontal">
-
-        <Switch
-            android:id="@+id/use_numbers"
-            android:layout_width="0dp"
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/activity_horizontal_margin"
-            android:layout_marginRight="@dimen/activity_horizontal_margin"
-            android:layout_weight="1"
-            android:text="@string/tv_include_numbers_label"
-            android:textAppearance="@style/TextAppearance.AppCompat.Caption" />
+            android:text="@string/tv_seed_label" />
 
-
-        <Switch
-            android:id="@+id/use_symbols"
-            android:layout_width="0dp"
+        <EditText
+            android:id="@+id/tv_seed"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/activity_horizontal_margin"
-            android:layout_marginStart="@dimen/activity_horizontal_margin"
-            android:layout_weight="1"
-            android:text="@string/tv_include_symbols_label"
-            android:textAppearance="@style/TextAppearance.AppCompat.Caption" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/generated_password"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+            android:afterTextChanged="@{(_) -> callback.onInputChanged()}"
+            android:hint="@string/tv_hint_seed"
+            android:imeOptions="flagForceAscii"
+            android:importantForAutofill="no"
+            android:inputType="text"
+            android:lines="1"
+            android:maxLines="1" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/activity_vertical_margin"
-            android:text="@string/tv_generated_pw_label" />
+            android:text="@string/tv_pw_label" />
+
+        <EditText
+            android:id="@+id/tv_pw"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:afterTextChanged="@{(_) -> callback.onInputChanged()}"
+            android:hint="@string/tv_hint_password"
+            android:imeOptions="flagForceAscii"
+            android:importantForAutofill="no"
+            android:inputType="text"
+            android:lines="1"
+            android:maxLines="1" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <com.google.android.material.switchmaterial.SwitchMaterial
+                android:id="@+id/limit_max_chars"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:checked="@={callback.limitChars}"
+                android:onCheckedChanged="@{(_, c) -> callback.limitChars(c)}"
+                android:text="@string/tv_max_chars_label"
+                android:textAppearance="?textAppearanceCaption"
+                app:switchPadding="8dp" />
+
+            <EditText
+                android:id="@+id/tv_max_chars"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:hint="0"
+                android:importantForAutofill="no"
+                android:inputType="number"
+                android:lines="1"
+                android:maxEms="3"
+                android:maxLength="3"
+                android:afterTextChanged="@{(v) -> callback.maxChars(v)}"
+                android:maxLines="1"
+                android:minEms="3"
+                app:enabled="@{callback.limitChars}"
+                tools:ignore="HardcodedText" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:orientation="horizontal">
+
+            <com.google.android.material.switchmaterial.SwitchMaterial
+                android:id="@+id/use_numbers"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:checked="@={callback.includeNumbers}"
+                android:onCheckedChanged="@{(_, c) -> callback.setIncludeNumbers(c)}"
+                android:text="@string/tv_include_numbers_label"
+                android:textAppearance="?textAppearanceCaption"
+                app:switchPadding="8dp" />
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_weight="0.5" />
+
+            <com.google.android.material.switchmaterial.SwitchMaterial
+                android:id="@+id/use_symbols"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:checked="@={callback.includeSymbols}"
+                android:onCheckedChanged="@{(_, c) -> callback.setIncludeSymbols(c)}"
+                android:text="@string/tv_include_symbols_label"
+                android:textAppearance="?textAppearanceCaption"
+                app:switchPadding="8dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/generated_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:isVisible="@{callback.generatedPassword != null}"
+            tools:visibility="visible">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:text="@string/tv_generated_pw_label" />
+
+            <TextView
+                android:id="@+id/tv_generated_password"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="?selectableItemBackground"
+                android:ellipsize="middle"
+                android:lines="1"
+                android:maxLines="1"
+                android:onClick="@{(_) -> callback.onPwClicked()}"
+                android:padding="@dimen/activity_horizontal_margin"
+                android:textAppearance="?textAppearanceHeadline5"
+                android:textColor="?colorSecondary"
+                app:text="@{callback.generatedPassword}"
+                tools:text="Generated password very long one" />
+        </LinearLayout>
+
+        <GridLayout
+            android:id="@+id/char_table"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:alignmentMode="alignBounds"
+            android:columnCount="9"
+            android:rowCount="4"
+            android:useDefaultMargins="false"
+            android:visibility="invisible"
+            tools:ignore="HardcodedText"
+            tools:visibility="visible">
+
+            <Button
+                style="@style/Button.CharTable"
+                android:text="A" />
+
+            <Button
+                style="@style/Button.CharTable"
+                android:text="B" />
+
+            <Button
+                style="@style/Button.CharTable"
+                android:text="C" />
+
+            <Button
+                style="@style/Button.CharTable"
+                android:text="D" />
+
+            <Button
+                style="@style/Button.CharTable"
+                android:text="E" />
+
+            <Button
+                style="@style/Button.CharTable"
+                android:text="F" />
+
+            <Button
+                style="@style/Button.CharTable"
+                android:text="G" />
+
+            <Button
+                style="@style/Button.CharTable"
+                android:text="H" />
+
+            <Button
+                style="@style/Button.CharTable"
+                android:text="I" />
+
+            <Button
+                style="@style/Button.CharTable"
+                android:text="J" />
+
+            <Button
+                style="@style/Button.CharTable"
+                android:text="K" />
+
+            <Button
+                style="@style/Button.CharTable"
+                android:text="L" />
+
+            <Button
+                style="@style/Button.CharTable"
+                android:text="M" />
+
+            <Button
+                style="@style/Button.CharTable"
+                android:text="N" />
+
+            <Button
+                style="@style/Button.CharTable"
+                android:text="O" />
+
+            <Button
+                style="@style/Button.CharTable"
+                android:text="P" />
+
+            <Button
+                style="@style/Button.CharTable"
+                android:text="Q" />
+
+            <Button
+                style="@style/Button.CharTable"
+                android:text="R" />
+
+            <Button
+                style="@style/Button.CharTable"
+                android:text="S" />
+
+            <Button
+                style="@style/Button.CharTable"
+                android:text="T" />
+
+            <Button
+                style="@style/Button.CharTable"
+                android:text="U" />
+
+            <Button
+                style="@style/Button.CharTable"
+                android:text="V" />
+
+            <Button
+                style="@style/Button.CharTable"
+                android:text="W" />
+
+            <Button
+                style="@style/Button.CharTable"
+                android:text="X" />
+
+            <Button
+                style="@style/Button.CharTable"
+                android:text="Y" />
+
+            <Button
+                style="@style/Button.CharTable"
+                android:text="Z" />
+
+            <Button
+                style="@style/Button.CharTable"
+                android:text="0" />
+
+            <Button
+                style="@style/Button.CharTable"
+                android:text="1" />
+
+            <Button
+                style="@style/Button.CharTable"
+                android:text="2" />
+
+            <Button
+                style="@style/Button.CharTable"
+                android:text="3" />
+
+            <Button
+                style="@style/Button.CharTable"
+                android:text="4" />
+
+            <Button
+                style="@style/Button.CharTable"
+                android:text="5" />
+
+            <Button
+                style="@style/Button.CharTable"
+                android:text="6" />
+
+            <Button
+                style="@style/Button.CharTable"
+                android:text="7" />
+
+            <Button
+                style="@style/Button.CharTable"
+                android:text="8" />
+
+            <Button
+                style="@style/Button.CharTable"
+                android:text="9" />
+        </GridLayout>
 
         <TextView
-            android:id="@+id/tv_generated_password"
-            android:layout_width="wrap_content"
+            android:id="@+id/tv_chart_number"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="?selectableItemBackground"
-            android:ellipsize="middle"
-            android:lines="1"
-            android:maxLines="1"
-            android:padding="@dimen/activity_horizontal_margin"
-            android:textAppearance="@style/TextAppearance.AppCompat.Headline"
-            android:textColor="?colorAccent"
-            tools:text="Generated password very long one" />
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:gravity="center"
+            android:textAppearance="?textAppearanceBodySmall"
+            android:textColor="?android:textColorPrimary"
+            app:text="@{callback.chartNumber}"
+            tools:text="Chart number"
+            tools:visibility="visible" />
+
     </LinearLayout>
-
-    <android.support.v7.widget.GridLayout
-        android:id="@+id/char_table"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:alignmentMode="alignBounds"
-        app:columnCount="9"
-        app:rowCount="4"
-        app:useDefaultMargins="false">
-
-        <Button
-            style="@style/Button.CharTable"
-            android:text="A" />
-
-        <Button
-            style="@style/Button.CharTable"
-            android:text="B" />
-
-        <Button
-            style="@style/Button.CharTable"
-            android:text="C" />
-
-        <Button
-            style="@style/Button.CharTable"
-            android:text="D" />
-
-        <Button
-            style="@style/Button.CharTable"
-            android:text="E" />
-
-        <Button
-            style="@style/Button.CharTable"
-            android:text="F" />
-
-        <Button
-            style="@style/Button.CharTable"
-            android:text="G" />
-
-        <Button
-            style="@style/Button.CharTable"
-            android:text="H" />
-
-        <Button
-            style="@style/Button.CharTable"
-            android:text="I" />
-
-        <Button
-            style="@style/Button.CharTable"
-            android:text="J" />
-
-        <Button
-            style="@style/Button.CharTable"
-            android:text="K" />
-
-        <Button
-            style="@style/Button.CharTable"
-            android:text="L" />
-
-        <Button
-            style="@style/Button.CharTable"
-            android:text="M" />
-
-        <Button
-            style="@style/Button.CharTable"
-            android:text="N" />
-
-        <Button
-            style="@style/Button.CharTable"
-            android:text="O" />
-
-        <Button
-            style="@style/Button.CharTable"
-            android:text="P" />
-
-        <Button
-            style="@style/Button.CharTable"
-            android:text="Q" />
-
-        <Button
-            style="@style/Button.CharTable"
-            android:text="R" />
-
-        <Button
-            style="@style/Button.CharTable"
-            android:text="S" />
-
-        <Button
-            style="@style/Button.CharTable"
-            android:text="T" />
-
-        <Button
-            style="@style/Button.CharTable"
-            android:text="U" />
-
-        <Button
-            style="@style/Button.CharTable"
-            android:text="V" />
-
-        <Button
-            style="@style/Button.CharTable"
-            android:text="W" />
-
-        <Button
-            style="@style/Button.CharTable"
-            android:text="X" />
-
-        <Button
-            style="@style/Button.CharTable"
-            android:text="Y" />
-
-        <Button
-            style="@style/Button.CharTable"
-            android:text="Z" />
-
-        <Button
-            style="@style/Button.CharTable"
-            android:text="0" />
-
-        <Button
-            style="@style/Button.CharTable"
-            android:text="1" />
-
-        <Button
-            style="@style/Button.CharTable"
-            android:text="2" />
-
-        <Button
-            style="@style/Button.CharTable"
-            android:text="3" />
-
-        <Button
-            style="@style/Button.CharTable"
-            android:text="4" />
-
-        <Button
-            style="@style/Button.CharTable"
-            android:text="5" />
-
-        <Button
-            style="@style/Button.CharTable"
-            android:text="6" />
-
-        <Button
-            style="@style/Button.CharTable"
-            android:text="7" />
-
-        <Button
-            style="@style/Button.CharTable"
-            android:text="8" />
-
-        <Button
-            style="@style/Button.CharTable"
-            android:text="9" />
-
-    </android.support.v7.widget.GridLayout>
-
-    <TextView
-        android:id="@+id/tv_chart_number"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/activity_vertical_margin"
-        android:gravity="center"
-        android:text="@string/pwchart_number"
-        android:textAppearance="@style/TextAppearance.AppCompat.Small" />
-
-</LinearLayout>
+</layout>

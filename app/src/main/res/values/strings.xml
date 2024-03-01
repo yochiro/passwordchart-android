@@ -5,8 +5,9 @@
     <string name="tv_hint_password">Password</string>
     <string name="tv_seed_label">Enter a phrase to create the password chart</string>
     <string name="tv_pw_label">Enter a password to convert using the chart</string>
-    <string name="tv_include_numbers_label">Incl. numbers</string>
-    <string name="tv_include_symbols_label">Incl. symbols</string>
+    <string name="tv_max_chars_label">Max chars</string>
+    <string name="tv_include_numbers_label">Numbers</string>
+    <string name="tv_include_symbols_label">Symbols</string>
     <string name="tv_generated_pw_label">Generated password (tap to copy to clipboard)</string>
     <string name="toast_copied_pw_to_clipboard_text">Password copied to clipboard</string>
 </resources>
